@@ -1889,4 +1889,84 @@ class Client
             $object
         );
     }
+
+    /**
+     * The collection of redirects.
+     *
+     * @param array $filter
+     * @return array
+     */
+    public static function getRedirects($filter = array())
+    {
+        $filter = Filter::create($filter);
+        return self::getCollection('/redirects' . $filter->toQuery(), 'Redirect');
+    }
+
+    /**
+     * The total number of redirects in the collection.
+     *
+     * @param array $filter
+     * @return int
+     */
+    public static function getRedirectsCount($filter = array())
+    {
+        $filter = Filter::create($filter);
+        return self::getCount('/redirects/count' . $filter->toQuery());
+    }
+
+    /**
+     * A single redirects by given id.
+     *
+     * @param int $id redirects id
+     * @return Resources\Redirect
+     */
+    public static function getRedirect($id)
+    {
+        return self::getResource('/redirects/' . $id, 'Redirect');
+    }
+
+    /**
+     * Create a new redirect from the given data.
+     *
+     * @param mixed $object
+     * @return mixed
+     */
+    public static function createRedirect($object)
+    {
+        return self::createResource('/redirects', $object);
+    }
+
+    /**
+     * Update the given redirect.
+     *
+     * @param int $id redirect id
+     * @param mixed $object
+     * @return mixed
+     */
+    public static function updateRedirect($id, $object)
+    {
+        return self::updateResource('/redirects/' . $id, $object);
+    }
+
+    /**
+     * Delete the given redirect.
+     *
+     * @param int $id redirect id
+     * @return mixed
+     */
+    public static function deleteRedirect($id)
+    {
+        return self::deleteResource('/redirects/' . $id);
+    }
+
+    /**
+     * Delete all redirects.
+     *
+     * @return mixed
+     */
+    public static function deleteAllRedirects()
+    {
+        return self::deleteResource('/redirects');
+    }
+
 }
